@@ -12,21 +12,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/CreateUser")
-public class CreateUser extends HttpServlet {
+@WebServlet("/LoginUser")
+public class LoginUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("createUser.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("CreateUser作動");
 		// リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
 		String user_name = request.getParameter("user_name");
@@ -41,7 +40,7 @@ public class CreateUser extends HttpServlet {
 
 		// ログイン処理の実行
 		User user = new User(user_name, user_pass);
-		CreateUserLogic logic = new CreateUserLogic();
+		LoginUserLogic logic = new LoginUserLogic();
 		boolean result = logic.execute(user);
 
 		// ログイン処理の成否によって処理を分岐
@@ -49,14 +48,13 @@ public class CreateUser extends HttpServlet {
 			// セッションスコープにユーザーIDを保存
 			HttpSession session = request.getSession();
 			session.setAttribute("user_name", user_name);
-			System.out.println(user_name);
 			// フォワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("createResult.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("top.jsp");
 			dispatcher.forward(request, response);
 			System.out.print("でけた！");
 		} else { // ログイン失敗時
 			// リダイレクト
-			response.sendRedirect("CreateUser");
+			response.sendRedirect("LoginUser");
 			System.out.print("ろぐいんできない");
 		}
 	}
