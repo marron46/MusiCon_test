@@ -2,6 +2,7 @@ package model.logic;
 
 import java.util.List;
 
+import dao.MusicDAO;
 import model.Music;
 
 public class ShowRankingLogic {//ランキングの情報を取得

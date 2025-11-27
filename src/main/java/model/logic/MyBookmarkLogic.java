@@ -9,6 +9,6 @@ public class MyBookmarkLogic {
 
 	//マイページ情報の取得
 	public List<Music> get() {
-		List<Music> allList = dao.get();
+		List<Music> allList = dao.getBookmark();
 	}
 }

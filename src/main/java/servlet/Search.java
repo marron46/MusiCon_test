@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import model.Music;
+import model.logic.SearchResultLogic;
 
 @WebServlet("/Search")
 public class Search extends HttpServlet {
