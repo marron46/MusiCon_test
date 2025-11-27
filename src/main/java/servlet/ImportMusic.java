@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import model.Music;
+import model.logic.ImportMusicLogic;
 
 @WebServlet("/ImportMusic")
 public class ImportMusic extends HttpServlet {
@@ -32,17 +33,18 @@ public class ImportMusic extends HttpServlet {
 		String artist = request.getParameter("artist");
 		String lyricist = request.getParameter("lyricist");
 		String composer = request.getParameter("composer");
-		String Str_releaseYear = request.getParameter("releaseYear");
+		String Str_releaseYMD = request.getParameter("releaseYMD");
 		String Str_music_time = request.getParameter("music_time");
 		String Str_like = request.getParameter("like");
+		String url = request.getParameter("url");
 
 		// releaseYearをint型に変換 + 残りの宣言
-		int releaseYear = Integer.parseInt(Str_releaseYear);
+		int releaseYMD = Integer.parseInt(Str_releaseYMD);
 		int music_time = Integer.parseInt(Str_music_time);
 		int like = Integer.parseInt(Str_like);
 
 		// 曲インポート処理の実行
-		Music music = new Music(title, genre, artist, lyricist, composer, releaseYear, music_time, like);
+		Music music = new Music(title, genre, artist, lyricist, composer, releaseYMD, music_time, like, url);
 		ImportMusicLogic logic = new ImportMusicLogic();
 		boolean result = logic.execute(music);
 
