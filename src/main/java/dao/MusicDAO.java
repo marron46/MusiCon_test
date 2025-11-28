@@ -141,7 +141,7 @@ public class MusicDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// INSERT文の準備（新規ユーザーをデータベースに登録）
-			String sql = "UPDATE SET LIKES = LIKES+1 WHERE MUSIC_ID=?";
+			String sql = "UPDATE MUSICS SET LIKES = LIKES+1 WHERE MUSIC_ID=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// INSERT文を実行
