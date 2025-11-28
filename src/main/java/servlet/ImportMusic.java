@@ -41,12 +41,12 @@ public class ImportMusic extends HttpServlet {
 		// releaseYearをint型に変換 + 残りの宣言
 		int releaseYMD = Integer.parseInt(Str_releaseYMD);
 		int music_time = Integer.parseInt(Str_music_time);
-		int like = Integer.parseInt(Str_like);
 
 		// 曲インポート処理の実行
-		Music music = new Music(title, genre, artist, lyricist, composer, releaseYMD, music_time, like, url);
+		Music music = new Music(title, genre, artist, composer, lyricist, releaseYMD, music_time, url);
 		ImportMusicLogic logic = new ImportMusicLogic();
 		boolean result = logic.execute(music);
+		System.out.println(music);
 
 		// 曲インポート処理の成否によって処理を分岐
 		if (result) { // 曲インポート成功時
@@ -60,7 +60,7 @@ public class ImportMusic extends HttpServlet {
 		} else { // 曲インポート失敗時
 			// リダイレクト
 			response.sendRedirect("ImportMusic");
-			System.out.print("ろぐいんできない");
+			System.out.print("曲入らない");
 		}
 	}
 }
