@@ -8,18 +8,20 @@
 <meta charset="UTF-8">
 <title>ユーザー登録結果</title>
 <%-- cssの連携 --%>
-<link rel="stylesheet" href="webapp/css/createResult.css">
+<link rel="stylesheet" href="css/createResult.css">
 </head>
 <body>
 	<div class="container">
-		<h1>ユーザー登録結果</h1>
 		<!-- ページのメインタイトル -->
-		<p>登録に成功しました</p>
-		
-		<p><%=(String) session.getAttribute("user_name")%>さんはじめまして
-		</p>
-		<a href="login.jsp" class="log-btn">ログイン画面へ</a>
+		<div class="message">
+			<div class="greeting">
+				<h1>登録に成功しました</h1>
 
+				<h2><%=(String) session.getAttribute("user_name")%>さんはじめまして
+				</h2>
+			</div>
+			<a href="login.jsp" class="log-btn">ログイン画面へ</a>
+		</div>
 	</div>
 </body>
 </html>

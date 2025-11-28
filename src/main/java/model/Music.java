@@ -13,10 +13,19 @@ public class Music {//Music情報格納
 	private String url;//音楽ファイルURL
 
 	// コンストラクタ : フィールド設定
-	public Music() {}
+	public Music() {
+	}
+
+	public Music(String title, String genre, String artist, int releaseYMD) {
+		this.title = title;
+		this.genre = genre;
+		this.artist = artist;
+		this.releaseYMD = releaseYMD;
+
+	}
 
 	public Music(String title, String genre, String artist, String lyricist, String composer, int releaseYMD,
-			int music_time, int like, String url) {
+			int music_time, String url) {
 		this.title = title;
 		this.genre = genre;
 		this.artist = artist;
@@ -24,7 +33,6 @@ public class Music {//Music情報格納
 		this.composer = composer;
 		this.releaseYMD = releaseYMD;
 		this.music_time = music_time;
-		this.like = like;
 		this.url = url;
 
 	}
