@@ -29,7 +29,6 @@ public class CreateUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("CreateUser作動");
 		// リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
 		String user_name = request.getParameter("user_name");
@@ -42,13 +41,13 @@ public class CreateUser extends HttpServlet {
 		// ハッシュ化
 		String user_pass = hashSHA256(Hr_user_pass);
 
-		// ログイン処理の実行
+		// 新規ユーザー登録処理の実行
 		User user = new User(user_name, user_pass);
 		CreateUserLogic logic = new CreateUserLogic();
 		boolean result = logic.execute(user);
 
-		// ログイン処理の成否によって処理を分岐
-		if (result) { // ログイン成功時
+		// 新規ユーザー登録処理の成否によって処理を分岐
+		if (result) { // 新規ユーザー登録成功時
 			// セッションスコープにユーザーIDを保存
 			HttpSession session = request.getSession();
 			session.setAttribute("user_name", user_name);
@@ -56,11 +55,11 @@ public class CreateUser extends HttpServlet {
 			// フォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("createResult.jsp");
 			dispatcher.forward(request, response);
-			System.out.print("でけた！");
-		} else { // ログイン失敗時
+			System.out.println("でけた！");
+		} else { // 新規ユーザー登録失敗時
 			// リダイレクト
 			response.sendRedirect("CreateUser");
-			System.out.print("ろぐいんできない");
+			System.out.println("ろぐいんできない");
 		}
 	}
 
