@@ -76,6 +76,7 @@ public class BookmarkDAO {
 		return bookmarkList; // 全てのbookmarkListを返す
 	}
 
+	// ユーザ名からユーザID、音楽名から音楽IDを検索しブックマークとして保存（仮）
 	public boolean registerBookmark(User user, Music music) {
 		// JDBCドライバを読み込む
 		try {
@@ -87,26 +88,29 @@ public class BookmarkDAO {
 		// データベース接続
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
-			// UsersテーブルでユーザネームからユーザIDを取得
+			//TODO UserとMusicがすでにテーブル内にある場合は弾く機能を作る
+			
+			// Usersテーブルで該当のユーザIDを取得
 			String sql_get_userid = "SELECT USER_ID FROM USERS WHERE USER_NAME=?";
 			PreparedStatement pStmt1 = conn.prepareStatement(sql_get_userid);
 			pStmt1.setString(1, user.getUserName());
 			ResultSet rs1 = pStmt1.executeQuery();
 			int int_userid = rs1.getInt("USER_ID");
-			
+
 			// Musicテーブルで音楽名から音楽IDを取得
 			String sql_get_musicid = "SELECT MUSIC_ID FROM USERS WHERE TITLE=?";
 			PreparedStatement pStmt2 = conn.prepareStatement(sql_get_musicid);
 			pStmt2.setString(1, music.getTitle());
 			ResultSet rs2 = pStmt2.executeQuery();
 			int int_musicid = rs2.getInt("MUSIC_ID");
-			
+
 			// INSERT文の準備（新規ユーザーをデータベースに登録）
 			String sql = "INSERT INTO BOOKMARKS(B_USER, B_MUSIC) VALUES (?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setInt(1, int_userid);
 			pStmt.setInt(2, int_musicid);
+
 			// INSERT文を実行
 			int result = pStmt.executeUpdate();
 

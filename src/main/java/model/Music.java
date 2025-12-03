@@ -1,6 +1,7 @@
 package model;
 
 public class Music {//Music情報格納
+	private int id;//曲ID
 	private String title;//タイトル
 	private String genre;//ジャンル
 	private String artist;//アーティスト名
@@ -8,7 +9,7 @@ public class Music {//Music情報格納
 	private String composer;//作曲家
 	private int releaseYMD;//発売年月日
 	private int music_time;//再生時間
-	private int like;//いいね数
+	private int likes;//いいね数
 	private String searchText;//検索情報
 	private String url;//音楽ファイルURL
 
@@ -16,16 +17,8 @@ public class Music {//Music情報格納
 	public Music() {
 	}
 
-	public Music(String title, String genre, String artist, int releaseYMD) {
-		this.title = title;
-		this.genre = genre;
-		this.artist = artist;
-		this.releaseYMD = releaseYMD;
-
-	}
-
 	public Music(String title, String genre, String artist, String lyricist, String composer, int releaseYMD,
-			int music_time, String url) {
+			int music_time) {
 		this.title = title;
 		this.genre = genre;
 		this.artist = artist;
@@ -33,7 +26,6 @@ public class Music {//Music情報格納
 		this.composer = composer;
 		this.releaseYMD = releaseYMD;
 		this.music_time = music_time;
-		this.url = url;
 
 	}
 
@@ -41,30 +33,81 @@ public class Music {//Music情報格納
 		this.searchText = searchText;
 	}
 
-	public Music(String title, String artist, int likes) {
+	public Music(int id, String title, String artist, int likes, String url) {
+		this.id = id;
 		this.title = title;
 		this.artist = artist;
-		this.like = likes;
+		this.likes = likes;
+		this.url = url;
+	}
+	
+	public Music(int id, String title, String artist, int likes) {
+		this.id = id;
+		this.title = title;
+		this.artist = artist;
+		this.likes = likes;
 	}
 
-	public String getTitle() { return title; }
+	public Music(int id, String title, int likes, String url) { // 曲再生用
+		this.id = id;
+		this.title = title;
+		this.likes = likes;
+		this.url = url;
+	}
 
-	public String getGenre() { return genre; }
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) { this.id = id; }
 
-	public String getArtist() {	return artist; }
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) { this.title = title; }
 
-	public String getLyricist() { return lyricist; }
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) { this.genre = genre; }
 
-	public String getComposer() { return composer; }
+	public String getArtist() {
+		return artist;
+	}
+	public void setArtist(String artist) { this.artist = artist; }
 
-	public int getReleaseYear() { return releaseYMD; }
+	public String getLyricist() {
+		return lyricist;
+	}
+	public void setLyricist(String lyricist) { this.lyricist = lyricist; }
 
-	public int getMusicTime() { return music_time; }
+	public String getComposer() {
+		return composer;
+	}
+	public void setComposer(String composer) { this.composer = composer; }
 
-	public int getLike() { return like; }
+	public int getReleaseYMD() {
+		return releaseYMD;
+	}
+	public void setReleaseYMD(int releaseYMD) { this.releaseYMD = releaseYMD; }
 
-	public String getSearchText() { return searchText; }
+	public int getMusicTime() {
+		return music_time;
+	}
+	public void setMusicTime(int music_time) { this.music_time = music_time; }
 
-	public String getUrl() { return url; }
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) { this.likes = likes; }
+
+	public String getSearchText() {
+		return searchText;
+	}
+	public void setSearchText(String searchText) { this.searchText = searchText; }
+
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) { this.url = url; }
 
 }
